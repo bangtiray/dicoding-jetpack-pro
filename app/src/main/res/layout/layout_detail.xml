@@ -29,7 +29,8 @@
                 android:id="@+id/kenBurn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/image_description" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -148,7 +149,8 @@
             app:layout_constraintEnd_toStartOf="@+id/imgShare"
             app:layout_constraintHorizontal_bias="0.26"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textOverview" />
+            app:layout_constraintTop_toBottomOf="@+id/textOverview"
+            android:contentDescription="@string/image_description" />
 
         <ImageView
             app:tint="@color/md_green_400"
@@ -160,7 +162,7 @@
             app:layout_constraintStart_toEndOf="@+id/imgBrowser"
             app:layout_constraintTop_toTopOf="@+id/imgBrowser"
             android:src="@drawable/ic_fluent_share_24_filled"
-            />
+            android:contentDescription="@string/image_description" />
 
         <TextView
             android:id="@+id/textView"
