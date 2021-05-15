@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MovieTv</string>
+    <string name="movies">Movies</string>
+    <string name="movie_tv">TV Show</string>
+    <string name="movie_tv_show">Television Show</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="overview">Overview</string>
+    <string name="open_browser">Open Browser</string>
+    <string name="share">Share</string>
+</resources>

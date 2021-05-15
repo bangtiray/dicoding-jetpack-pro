@@ -1,0 +1,7 @@
+apply from: "$rootDir/dependencies/libs.gradle"
+apply from: "$rootDir/dependencies/android.gradle"
+apply from: "$rootDir/dependencies/kotlin.gradle"
+apply from: "$rootDir/dependencies/ui.gradle"
+apply from: "$rootDir/dependencies/test.gradle"
+
+
