@@ -3,7 +3,6 @@ android {
     buildToolsVersion rootProject.ext.buildTools
 
     defaultConfig {
-        //applicationId rootProject.ext.applicationId
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
         versionCode rootProject.ext.versionCode

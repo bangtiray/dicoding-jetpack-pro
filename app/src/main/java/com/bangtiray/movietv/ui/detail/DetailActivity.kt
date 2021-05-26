@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bangtiray.movietv.R
 import com.bangtiray.movietv.data.MovieEntity
@@ -11,8 +12,10 @@ import com.bangtiray.movietv.databinding.ActivityDetailBinding
 import com.bangtiray.movietv.extension.getStringDate
 import com.bangtiray.movietv.extension.loadFromUrl
 import com.bangtiray.movietv.utils.ConstantValue
+import com.bangtiray.movietv.utils.ViewModelFactory
 import com.bangtiray.wvhelper.webview.src.Bangtiray
 
+@Suppress("CAST_NEVER_SUCCEEDS")
 class DetailActivity : AppCompatActivity() {
 
 
@@ -22,28 +25,24 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var viewModel: ViewModel
+    private lateinit var viewModel: DetailViewModel
     private var mode = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel =
-            ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ViewModel::class.java]
+
+        val viewModelFactory = ViewModelFactory.getInstance()
+        viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
         val extras = intent.extras
 
         if (extras != null) {
-            val movieID = extras.getString(EXTRA_MOVIE)
+            val movieID = extras.getInt(EXTRA_MOVIE)
             mode = extras.getString(EXTRA_CATEGORY).toString()
-            if (movieID != null) {
-                viewModel.setSelectedMovie(movieID)
-                when (mode) {
-                    resources.getString(R.string.movies) -> setDetailInfo(
-                        viewModel.getMovies() as MovieEntity
-                    )
-                    else -> setDetailInfo(viewModel.getMoviesTV() as MovieEntity)
-                }
+            when (mode) {
+                resources.getString(R.string.movies) -> viewModel.getMovieDetail(movieID).observe(this, { setDetailInfo(it) })
+                else -> viewModel.getTvShowDetail(movieID).observe(this, { setDetailInfo(it) })
             }
 
         }

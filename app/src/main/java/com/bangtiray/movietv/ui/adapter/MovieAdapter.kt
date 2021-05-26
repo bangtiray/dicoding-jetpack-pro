@@ -48,5 +48,5 @@ class MovieAdapter internal constructor(private val listener: ClickListener) :
 }
 
 internal interface ClickListener {
-    fun onCLick(position: Int, movieId: String)
+    fun onCLick(position: Int, movieId: Int)
 }

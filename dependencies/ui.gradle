@@ -16,4 +16,12 @@ dependencies {
     implementation 'com.github.florent37:arclayout:1.0.5'
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     implementation 'com.github.bangtiray:WebViewHelper:1.0.0'
+
+
+    def viewModel_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+
 }

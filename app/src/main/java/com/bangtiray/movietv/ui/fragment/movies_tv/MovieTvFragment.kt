@@ -15,13 +15,15 @@ import com.bangtiray.movietv.databinding.FragmentMovieTvBinding
 import com.bangtiray.movietv.ui.adapter.ClickListener
 import com.bangtiray.movietv.ui.adapter.MovieAdapter
 import com.bangtiray.movietv.ui.detail.DetailActivity
-import com.bangtiray.movietv.ui.fragment.ViewModel
+import com.bangtiray.movietv.ui.fragment.movies.MoviesViewModel
+import com.bangtiray.movietv.utils.ViewModelFactory
 
 
 class MovieTvFragment : Fragment(), ClickListener {
     private lateinit var binding: FragmentMovieTvBinding
     private lateinit var adapter: MovieAdapter
-    private lateinit var viewModel: ViewModel
+
+    private lateinit var viewModel: MoviesViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,13 +35,13 @@ class MovieTvFragment : Fragment(), ClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = MovieAdapter(this)
+        val modelFactory = ViewModelFactory.getInstance()
         activity.let {
-            viewModel = ViewModelProvider(
-                it!!,
-                ViewModelProvider.NewInstanceFactory()
-            )[ViewModel::class.java]
+            viewModel = ViewModelProvider(it!!, modelFactory)[MoviesViewModel::class.java]
         }
-        populateRecyclerView(viewModel.genListMovieTV())
+        viewModel.getTvShow().observe(viewLifecycleOwner, {
+            populateRecyclerView(it)
+        })
     }
 
     private fun populateRecyclerView(list: List<MovieEntity>) {
@@ -52,7 +54,7 @@ class MovieTvFragment : Fragment(), ClickListener {
         }
     }
 
-    override fun onCLick(position: Int, movieId: String) {
+    override fun onCLick(position: Int, movieId: Int) {
         val intent = Intent(activity, DetailActivity::class.java)
         intent.putExtra(DetailActivity.EXTRA_MOVIE, movieId)
         intent.putExtra(DetailActivity.EXTRA_CATEGORY, resources.getString(R.string.movie_tv))
