@@ -16,4 +16,10 @@
         android:name="com.bangtiray.movietv.ui.fragment.movies_tv.MovieTvFragment"
         android:label="fragment_movies"
         tools:layout="@layout/fragment_movie_tv" />
+
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="com.bangtiray.movietv.ui.fragment.favorite.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

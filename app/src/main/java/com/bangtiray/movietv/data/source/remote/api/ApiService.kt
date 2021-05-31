@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("movie/popular")
-    fun getPopularMovies(
+    fun getPopularMovie(
         @Query("api_key") apiKey: String = ConstantValue.apiKey
     ): Call<MainResponse<MovieResultsItem>>
 
@@ -33,6 +33,7 @@ interface ApiService {
         @Path("tv_id") id: Int,
         @Query("api_key") apiKey: String = ConstantValue.apiKey
     ): Call<TvShowResultsItem>
+
 
 
 }

@@ -20,8 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
-            android:theme="@style/Theme.AppCompat.Light"
-            app:popupTheme="@style/Widget.AppCompat.PopupMenu"
             app:title="@string/movie_tv_show" />
 
 

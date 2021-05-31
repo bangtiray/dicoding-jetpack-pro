@@ -3,6 +3,7 @@ package com.bangtiray.movietv.extension
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import com.bangtiray.movietv.R
@@ -31,4 +32,9 @@ fun ImageView.loadFromUrl(
         .apply(RequestOptions().transform(CenterCrop(), RoundedCorners(16)))
         .into(this)
         .clearOnDetach()
+}
+
+
+fun ImageButton.setDrawableFavorite(isFavorite: Boolean) {
+    this.setImageResource(if (isFavorite) R.drawable.ic_favorite else R.drawable.ic_favorite_border)
 }

@@ -25,7 +25,7 @@ data class TvShowResultsItem (
     val voteAverage: Double? = null,
 
     @field:SerializedName("id")
-    val id: Int? = null,
+    val id: Int=0,
 
     @field:SerializedName("vote_count")
     val voteCount: Int? = null

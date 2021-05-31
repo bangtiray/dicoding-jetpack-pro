@@ -29,8 +29,8 @@
                 android:id="@+id/kenBurn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/image_description" />
+                android:contentDescription="@string/image_description"
+                android:scaleType="centerCrop" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -115,14 +115,13 @@
 
         <TextView
             android:id="@+id/textPopularity"
-            android:layout_width="0dp"
+            android:layout_width="143dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
 
+            android:layout_marginTop="8dp"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             app:drawableStartCompat="@drawable/ic_fluent_point_scan_24_regular"
             app:drawableTint="@color/colorOnBackground"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/releaseDate"
             app:layout_constraintTop_toBottomOf="@+id/releaseDate" />
 
@@ -140,29 +139,40 @@
             app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
         <ImageView
-            app:tint="@color/md_green_400"
             android:id="@+id/imgBrowser"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/image_description"
             android:src="@drawable/ic_fluent_open_in_browser_24_selector"
             app:layout_constraintEnd_toStartOf="@+id/imgShare"
-            app:layout_constraintHorizontal_bias="0.26"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textOverview"
-            android:contentDescription="@string/image_description" />
+            app:tint="@color/md_green_400" />
 
         <ImageView
-            app:tint="@color/md_green_400"
             android:id="@+id/imgShare"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/image_description"
+            android:src="@drawable/ic_fluent_share_24_filled"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imgBrowser"
             app:layout_constraintTop_toTopOf="@+id/imgBrowser"
-            android:src="@drawable/ic_fluent_share_24_filled"
-            android:contentDescription="@string/image_description" />
+            app:tint="@color/md_green_400" />
+
+        <ImageButton
+            android:id="@+id/favoriteButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textPopularity"
+            app:layout_constraintTop_toTopOf="@+id/textPopularity"
+            app:tint="@color/md_green_400" />
 
         <TextView
             android:id="@+id/textView"

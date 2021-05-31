@@ -9,4 +9,10 @@
     <string name="open_browser">Open Browser</string>
     <string name="share">Share</string>
     <string name="image_description">Image Description</string>
+    <string name="favorite">Favorite</string>
+    <string name="isfav">Add to favorite</string>
+    <string name="unfav">Remove from favorite</string>
+    <string name="empty_title">No favorites yet</string>
+    <string name="tab_title_movie">List Movie</string>
+    <string name="tab_title_tvshow">List TV Show</string>
 </resources>

@@ -1,4 +1,5 @@
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
@@ -23,5 +24,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+
+    def roomVersion = "2.3.0"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
 }
