@@ -1,9 +1,11 @@
 package com.bangtiray.movietv.extension
 
+import android.annotation.SuppressLint
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
 
+@SuppressLint("SimpleDateFormat")
 private fun formatDate(date: String, format: String): String {
     var result = ""
 

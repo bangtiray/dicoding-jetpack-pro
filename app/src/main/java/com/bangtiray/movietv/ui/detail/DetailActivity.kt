@@ -2,56 +2,52 @@ package com.bangtiray.movietv.ui.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bangtiray.movietv.R
-import com.bangtiray.movietv.data.MovieEntity
+import com.bangtiray.movietv.data.source.local.entity.MoviesEntity
 import com.bangtiray.movietv.databinding.ActivityDetailBinding
 import com.bangtiray.movietv.extension.getStringDate
 import com.bangtiray.movietv.extension.loadFromUrl
+import com.bangtiray.movietv.extension.setDrawableFavorite
+import com.bangtiray.movietv.ui.fragment.MainViewModel
 import com.bangtiray.movietv.utils.ConstantValue
 import com.bangtiray.wvhelper.webview.src.Bangtiray
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
-
-
     companion object {
         const val EXTRA_MOVIE = "extra_movie"
         const val EXTRA_CATEGORY = "extra_category"
     }
 
+    //
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var viewModel: ViewModel
+    private val viewModel: MainViewModel by viewModels()
     private var mode = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel =
-            ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ViewModel::class.java]
         val extras = intent.extras
 
         if (extras != null) {
-            val movieID = extras.getString(EXTRA_MOVIE)
+            val movieID = extras.getInt(EXTRA_MOVIE)
             mode = extras.getString(EXTRA_CATEGORY).toString()
-            if (movieID != null) {
-                viewModel.setSelectedMovie(movieID)
-                when (mode) {
-                    resources.getString(R.string.movies) -> setDetailInfo(
-                        viewModel.getMovies() as MovieEntity
-                    )
-                    else -> setDetailInfo(viewModel.getMoviesTV() as MovieEntity)
-                }
-            }
+            viewModel.getDetailData(movieID).observe(this, { setDetailInfo(it) })
+
 
         }
         binding.layoutDetail.toolbar.setNavigationOnClickListener { finish() }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setDetailInfo(me: MovieEntity) {
+    private fun setDetailInfo(me: MoviesEntity) {
         binding.layoutDetail.backDrop.loadFromUrl("${ConstantValue.imageUrl}${me.mBackDropPath}")
         binding.layoutDetail.kenBurn.loadFromUrl("${ConstantValue.imageUrl}${me.mPosterPath}")
         binding.layoutDetail.movieTitle.text = me.mTitle
@@ -60,7 +56,13 @@ class DetailActivity : AppCompatActivity() {
         binding.layoutDetail.textPopularity.text = me.mPopularity.toString()
         binding.layoutDetail.ratingBar.rating = me.mVoteAverage
         binding.layoutDetail.voteCount.text = "${me.mVoteAverage}%"
+        binding.layoutDetail.favoriteButton.setDrawableFavorite(me.isFavorite)
 
+        binding.layoutDetail.favoriteButton.run {
+            setOnClickListener {
+                viewModel.setFavoriteMovie(me, !me.isFavorite)
+            }
+        }
 
         binding.layoutDetail.imgBrowser.run {
             setOnClickListener {

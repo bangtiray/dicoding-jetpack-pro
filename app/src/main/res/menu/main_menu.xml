@@ -13,5 +13,10 @@
         android:enabled="true"
         android:icon="@drawable/ic_fluent_tv_24_selector"
         android:title="@string/movie_tv" />
+ <item
+        android:id="@+id/nav_favorite"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite" />
 
 </menu>
